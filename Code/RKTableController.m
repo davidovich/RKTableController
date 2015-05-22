@@ -20,10 +20,9 @@
 
 #import "RKTableController.h"
 #import "RKAbstractTableController_Internals.h"
-#import "RKLog.h"
+#import "RestKit/RKLog.h"
 #import "NSArray+RKAdditions.h"
-#import "RKMappingOperation.h"
-#import "RKMappingOperationDataSource.h"
+#import "RestKit/ObjectMapping.h"
 
 // Define logging component
 #undef RKLogComponent

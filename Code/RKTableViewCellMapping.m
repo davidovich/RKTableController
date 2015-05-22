@@ -19,7 +19,7 @@
 //
 
 #import "RKTableViewCellMapping.h"
-#import "RKLog.h"
+#import "RestKit/RKLog.h"
 
 // Define logging component
 #undef RKLogComponent

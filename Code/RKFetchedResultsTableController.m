@@ -20,12 +20,9 @@
 
 #import "RKFetchedResultsTableController.h"
 #import "RKAbstractTableController_Internals.h"
-#import "RKManagedObjectStore.h"
-#import "RKMappingOperation.h"
-#import "RKEntityMapping.h"
-#import "RKLog.h"
-#import "RKManagedObjectRequestOperation.h"
-#import "RKObjectManager.h"
+#import "RestKit/CoreData.h"
+#import "RestKit/ObjectMapping.h"
+#import "RestKit/RKLog.h"
 
 // Define logging component
 #undef RKLogComponent
@@ -261,7 +258,7 @@ static BOOL RKShouldReloadRowForManagedObjectWithCellMapping(NSManagedObject *ma
 {
     RKHTTPRequestOperation *requestOperation = [[[self HTTPOperationClass] alloc] initWithRequest:request];
     RKManagedObjectRequestOperation *operation = [[RKManagedObjectRequestOperation alloc] initWithHTTPRequestOperation:requestOperation responseDescriptors:self.responseDescriptors];
-    operation.managedObjectContext = self.objectRequestOperationContext;
+    operation.managedObjectContext = self.managedObjectContext;
     operation.fetchRequestBlocks = self.fetchRequestBlocks;
     operation.managedObjectCache = self.managedObjectCache;
     operation.deletesOrphanedObjects = self.deletesOrphanedObjects;
@@ -290,9 +287,9 @@ static BOOL RKShouldReloadRowForManagedObjectWithCellMapping(NSManagedObject *ma
         [fetchRequest setSortDescriptors:self.sortDescriptors];
     }
     
-    RKLogTrace(@"Loading fetched results table view from managed object context %@ with fetch request: %@", self.fetchedResultsControllerContext, fetchRequest);
+    RKLogTrace(@"Loading fetched results table view from managed object context %@ with fetch request: %@", self.managedObjectContext, fetchRequest);
     NSFetchedResultsController *fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest
-                                                                                               managedObjectContext:self.fetchedResultsControllerContext
+                                                                                               managedObjectContext:self.managedObjectContext
                                                                                                  sectionNameKeyPath:self.sectionNameKeyPath
                                                                                                           cacheName:self.cacheName];
     self.fetchedResultsController = fetchedResultsController;

@@ -12,7 +12,7 @@
 
 #import "RKTableController.h"
 #import "RKFetchedResultsTableController.h"
-#import "RKManagedObjectStore.h"
+#import "RestKit/CoreData.h"
 
 @implementation RKObjectManager (RKTableController)
 
@@ -36,8 +36,7 @@
 {
     RKFetchedResultsTableController *tableController = [RKFetchedResultsTableController tableControllerForTableViewController:tableViewController];
     tableController.responseDescriptors = self.responseDescriptors;
-    tableController.fetchedResultsControllerContext = self.managedObjectStore.mainQueueManagedObjectContext;
-    tableController.objectRequestOperationContext = self.managedObjectStore.persistentStoreManagedObjectContext;
+    tableController.managedObjectContext = self.managedObjectStore.mainQueueManagedObjectContext;
     tableController.managedObjectCache = self.managedObjectStore.managedObjectCache;
     tableController.operationQueue = self.operationQueue;
     tableController.fetchRequestBlocks = self.fetchRequestBlocks;
@@ -48,8 +47,8 @@
 {
     RKFetchedResultsTableController *tableController = [RKFetchedResultsTableController tableControllerWithTableView:tableView forViewController:viewController];
     tableController.responseDescriptors = self.responseDescriptors;
-    tableController.fetchedResultsControllerContext = self.managedObjectStore.mainQueueManagedObjectContext;
-    tableController.objectRequestOperationContext = self.managedObjectStore.persistentStoreManagedObjectContext;
+    tableController.managedObjectContext = self.managedObjectStore.mainQueueManagedObjectContext;
+    tableController.managedObjectCache = self.managedObjectStore.managedObjectCache;
     tableController.operationQueue = self.operationQueue;
     tableController.fetchRequestBlocks = self.fetchRequestBlocks;
     return tableController;

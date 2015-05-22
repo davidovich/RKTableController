@@ -20,16 +20,14 @@
 
 #import "RKAbstractTableController.h"
 #import "RKAbstractTableController_Internals.h"
-#import "RKMappingOperation.h"
-#import "RKLog.h"
-#import "RKErrors.h"
+#import "RestKit/Network.h"
+#import "RestKit/RKLog.h"
+#import "RestKit/Support.h"
 #import "UIView+FindFirstResponder.h"
 #import "RKRefreshGestureRecognizer.h"
 #import "RKTableSection.h"
-#import "RKObjectRequestOperation.h"
-#import "RKObjectMappingOperationDataSource.h"
-#import "RKManagedObjectRequestOperation.h"
-#import "RKHTTPUtilities.h"
+#import "RestKit/ObjectMapping.h"
+
 
 // Define logging component
 #undef RKLogComponent
@@ -415,7 +413,7 @@ NSString * RKStringDescribingTransitionFromTableControllerStateToState(RKTableCo
     NSAssert(cell, @"Cell mapping failed to dequeue or allocate a tableViewCell for object: %@", mappableObject);
 
     // Map the object state into the cell
-    RKObjectMappingOperationDataSource *dataSource = [RKObjectMappingOperationDataSource new];
+    RKManagedObjectMappingOperationDataSource *dataSource = [RKManagedObjectMappingOperationDataSource new];
     RKMappingOperation* mappingOperation = [[RKMappingOperation alloc] initWithSourceObject:mappableObject destinationObject:cell mapping:cellMapping];
     mappingOperation.dataSource = dataSource;
     NSError* error = nil;

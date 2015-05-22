@@ -24,7 +24,7 @@
 #import "RKTableCellBlockTypes.h"
 #import "RKTableViewCellMappings.h"
 #import "RKTableItem.h"
-#import "RKObjectMapping.h"
+#import "RestKit/ObjectMapping.h"
 #import "RKKeyboardScroller.h"
 
 ///-----------------------------------------------------------------------------
