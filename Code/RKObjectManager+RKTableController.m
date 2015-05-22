@@ -6,13 +6,14 @@
 //  Copyright (c) 2009-2012 RestKit. All rights reserved.
 //
 
+#import "RestKit/CoreData.h"
 #import "RKObjectManager+RKTableController.h"
 
 #if TARGET_OS_IPHONE
 
 #import "RKTableController.h"
 #import "RKFetchedResultsTableController.h"
-#import "RestKit/CoreData.h"
+
 
 @implementation RKObjectManager (RKTableController)
 
